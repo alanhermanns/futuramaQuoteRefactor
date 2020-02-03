@@ -1,16 +1,14 @@
 
 const getAFuturamaQuote = () => {
-  return fetch('https://ron-swanson-quotes.herokuapp.com/v2/quotes')
+  return fetch('https://futuramaapi.herokuapp.com/api/quotes/1')
     .then(res => {
       return res.json();
     })
-    .then(response => {
-      console.log(response);
-      return {
-        character: 'Ron Swanson',
-        quote: response,
-      };
-    });
+    .then(([{ image, character, quote }]) => ({
+      image,
+      character,
+      text: quote
+    }));
 };
 
 export default getAFuturamaQuote;
