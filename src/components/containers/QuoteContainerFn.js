@@ -1,40 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes, { bool } from 'prop-types';
 import Quote from '../Quote';
 import getAFuturamaQuote from '../../services/FuturamaApi';
 import Button from '../Button';
 
-const FuturamaQuotes = () => {
-
-  const [image, setImage] = useState('');
+const FuturamaQuotesFn = () => {
+  
+  const [stateimage, setImage] = useState('');
   const [character, setCharacter] = useState('');
-  const [text, setText] = useState('');
-  const [click, setClick] = useState(false);
+  const [statetext, setText] = useState('');
+  const [stateclick, setClick] = useState(false);
 
   const fetchQuote = () => {
     getAFuturamaQuote()
       .then(({ character, text, image }) => {
-        setImage(() => image);
-        setCharacter(() => character);
-        setText(() => text);
+        setImage(image);
+        setCharacter(character);
+        setText(text);
       });
   };
 
-  const onClick = () => {
-    setClick(click);
+  const changeClick = () => {
+    setClick(stateclick);
   };
 
   useEffect(() => {
-    if(click === true){
-      fetchQuote();
-      setClick(!click);
+    if(stateclick === true){
+      fetchQuote()
+        .then(() => {
+          setClick(!stateclick);
+        });
     }
   });
   return <>
-    <Quote image = {image} character = {character} text = {text} />
-    <Button onClick = {onClick}/>
+    <Quote image = {stateimage} character = {character} text = {statetext} />
+    <Button onClick = {changeClick}/>
   </>;
 };
 
-export default FuturamaQuotes;
+export default FuturamaQuotesFn;
 
