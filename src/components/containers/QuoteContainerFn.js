@@ -5,35 +5,38 @@ import Button from '../Button';
 
 const FuturamaQuotesFn = () => {
   
-  const [stateimage, setImage] = useState('');
+  const [image, setImage] = useState('');
   const [character, setCharacter] = useState('');
-  const [statetext, setText] = useState('');
-  const [stateclick, setClick] = useState(false);
+  const [text, setText] = useState('');
+  const [click, setClick] = useState(false);
 
   const fetchQuote = () => {
     getAFuturamaQuote()
       .then(({ character, text, image }) => {
+        console.log('thing');
         setImage(image);
         setCharacter(character);
         setText(text);
       });
   };
 
-  const changeClick = () => {
-    setClick(stateclick);
-  };
+  // const changeClick = () => {
+  //   setClick(!click);
+  // };
 
-  useEffect(() => {
-    if(stateclick === true){
-      fetchQuote()
-        .then(() => {
-          setClick(!stateclick);
-        });
-    }
-  });
+  // useEffect(() => {
+  //   if(click === true){
+  //     fetchQuote()
+  //       .then(() => {
+  //         setClick(!click);
+  //       });
+  //   }
+  // },
+  // [click]
+  // );
   return <>
-    <Quote image = {stateimage} character = {character} text = {statetext} />
-    <Button onClick = {changeClick}/>
+    <Quote image = {image} character = {character} text = {text} />
+    <Button onClick = {fetchQuote}/>
   </>;
 };
 
