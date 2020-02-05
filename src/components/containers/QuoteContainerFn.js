@@ -30,10 +30,10 @@ const FuturamaQuotesFn = () => {
   });
 
   return <>
-    <input type='number' onChange={({ target }) => setNumber(target.value) }/>
+    <input type='number' onChange={({ target }) => { setNumber(target.value);
+      setName('');}}/>
     {characterItems}
     {name ? quoteItemsByCharacter : <></> }
-    {quoteItemsByCharacter}
     <Button onClick={getQuotes}></Button>
   </>;
 };
