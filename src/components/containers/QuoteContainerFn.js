@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Quote from '../Quote';
-import getAFuturamaQuote from '../../services/FuturamaApi';
 import Button from '../Button';
 import useFuturamaApiCallWParams from '../FuturamaApiHook';
 
 const FuturamaQuotesFn = () => {
-  
-  // const [image, setImage] = useState('');
-  // const [character, setCharacter] = useState('');
-  // const [text, setText] = useState('');
-  const [number, setNumber] = useState(1);
 
-  // const fetchQuote = () => {
-  //   getAFuturamaQuote()
-  //     .then(({ character, text, image }) => {
-  //       setImage(image);
-  //       setCharacter(character);
-  //       setText(text);
-  //     });
-  // };
+  const [number, setNumber] = useState(1);
 
   const { characters, getQuotes } = useFuturamaApiCallWParams(number);
   const characterItems = characters.map((item, i) => {
@@ -29,9 +16,9 @@ const FuturamaQuotesFn = () => {
   });
 
   return <>
-    <input type='text' onChange={({ target }) => setNumber(target.value) }/>
+    <input type='number' onChange={({ target }) => setNumber(target.value) }/>
     {characterItems}
-    <Button onClick={getQuotes} />
+    <Button onClick={getQuotes}></Button>
   </>;
 };
 
