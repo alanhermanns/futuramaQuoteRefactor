@@ -7,7 +7,7 @@ import useFuturamaApiCallWNameParams from '../FuturamaApiNameHook';
 const FuturamaQuotesFn = () => {
 
   const [number, setNumber] = useState(1);
-  const [name, setName] = useState('Fry');
+  const [name, setName] = useState('');
 
   const { characters, getQuotes } = useFuturamaApiCallWParams(number);
   
