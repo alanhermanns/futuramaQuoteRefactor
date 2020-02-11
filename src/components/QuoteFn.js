@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Quote = ({ image, character, text, onClick }) => {
+const Quote = ({ image, character, text }) => {
   return (
-    <div onClick={onClick}>
+    <div>
       <img src = {image}></img>
       <p>{character} : {text}</p>
     </div>
@@ -13,8 +13,7 @@ const Quote = ({ image, character, text, onClick }) => {
 Quote.propTypes = {
   image : PropTypes.string,
   text : PropTypes.string.isRequired,
-  character: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  character: PropTypes.string.isRequired
 }; 
 
 export default Quote;
